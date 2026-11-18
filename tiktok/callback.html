@@ -1,0 +1,15 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Connecting TikTok · SNES AI Uploader</title><link rel="stylesheet" href="../style.css"></head><body><main>
+<h1>Connecting TikTok…</h1>
+<p class="mute" id="msg">Handing the sign-in back to SNES AI Uploader on this computer.</p>
+<script>
+// TikTok only returns sign-ins to a registered https address: this page passes the one-time code on to the
+// uploader running on the owner's own computer (it never leaves the browser otherwise).
+(function () {
+  var q = location.search || "";
+  if (!/[?&](code|error)=/.test(q)) { document.getElementById("msg").textContent = "No sign-in to pass on."; return; }
+  location.replace("http://localhost:8090/api/accounts/tiktok/callback" + q);
+})();
+</script>
+<noscript><p>Turn on JavaScript to finish connecting.</p></noscript>
+</main></body></html>
